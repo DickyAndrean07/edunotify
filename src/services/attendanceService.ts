@@ -1214,3 +1214,22 @@ export async function getTeacherTodaySchedules(
     schedules: items,
   };
 }
+
+// ==========================================
+// Correction Hook Re-exports
+// ==========================================
+export {
+  correctAttendanceRecord,
+  getCorrectionHistory,
+  verifyCorrectionAccess,
+  calculateCalendarDaysDiff,
+  CorrectionValidationError,
+  CorrectionAuthorizationError,
+} from './correctionService';
+export type {
+  CorrectionWindow,
+  CorrectionEligibilityResult,
+  CheckCorrectionParams,
+  CorrectAttendanceInput,
+} from './correctionService';
+
