@@ -1,6 +1,7 @@
 import { getSession } from '@/lib/auth/session';
 import { redirect } from 'next/navigation';
 import { DashboardHeader } from '@/components/dashboard-header';
+import { TeacherAttendancePortal } from '@/components/attendance/TeacherAttendancePortal';
 import { BookOpen, Clock, CheckCircle2, AlertCircle } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
@@ -26,41 +27,11 @@ export default async function TeacherDashboardPage() {
             Portal Guru Mata Pelajaran
           </h1>
           <p className="text-sm text-neutral-400 mt-1">
-            Jadwal mengajar aktif hari ini dan pengisian presensi estafet.
+            Jadwal mengajar aktif hari ini dan pengisian presensi estafet terproteksi.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          <div className="p-5 rounded-2xl bg-neutral-900 border border-neutral-800">
-            <Clock className="w-6 h-6 text-blue-400 mb-3" />
-            <div className="text-sm font-semibold text-neutral-200">
-              Jadwal Mengajar Hari Ini
-            </div>
-            <p className="text-xs text-neutral-400 mt-1">
-              Daftar jam pelajaran sesuai kalender aktif
-            </p>
-          </div>
-
-          <div className="p-5 rounded-2xl bg-neutral-900 border border-neutral-800">
-            <CheckCircle2 className="w-6 h-6 text-emerald-400 mb-3" />
-            <div className="text-sm font-semibold text-neutral-200">
-              Input Presensi Estafet
-            </div>
-            <p className="text-xs text-neutral-400 mt-1">
-              Pengisian presensi resmi jam ke-1 atau jam estafet berikutnya
-            </p>
-          </div>
-
-          <div className="p-5 rounded-2xl bg-neutral-900 border border-neutral-800">
-            <AlertCircle className="w-6 h-6 text-amber-400 mb-3" />
-            <div className="text-sm font-semibold text-neutral-200">
-              Riwayat Pengisian
-            </div>
-            <p className="text-xs text-neutral-400 mt-1">
-              Status sesi yang telah disubmit dan terkunci
-            </p>
-          </div>
-        </div>
+        <TeacherAttendancePortal user={session} />
       </main>
     </div>
   );
