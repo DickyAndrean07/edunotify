@@ -9,10 +9,12 @@ import {
   DoorOpen,
   CalendarDays,
   Clock,
+  FileSpreadsheet,
 } from 'lucide-react';
 
 const NAV_ITEMS = [
   { href: '/admin', label: 'Ringkasan', icon: LayoutDashboard, exact: true },
+  { href: '/admin/reports', label: 'Laporan & Ekspor', icon: FileSpreadsheet },
   { href: '/admin/students', label: 'Data Siswa', icon: GraduationCap },
   { href: '/admin/teachers', label: 'Guru & Staf', icon: Users },
   { href: '/admin/classes', label: 'Kelas & Rombel', icon: DoorOpen },

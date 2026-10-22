@@ -8,7 +8,7 @@ import {
   Clock,
   Database,
   ArrowRight,
-  ShieldCheck,
+  FileSpreadsheet,
 } from 'lucide-react';
 import Link from 'next/link';
 import {
@@ -18,6 +18,8 @@ import {
   getTeachingSchedules,
   getActiveAcademicYear,
 } from '@/services/masterDataService';
+import { getDailyAttendanceCompleteness } from '@/services/reportService';
+import { DailyCompletionSection } from '@/components/reports';
 
 export const dynamic = 'force-dynamic';
 
@@ -27,15 +29,22 @@ export default async function AdminDashboardPage() {
     redirect('/login');
   }
 
-  // Fetch quick metrics for admin overview
-  const [studentsData, teachersData, classesData, schedulesData, activeAy] =
-    await Promise.all([
-      getStudents(session.schoolId, { limit: 1 }),
-      getTeachers(session.schoolId, { limit: 1 }),
-      getClasses(session.schoolId, { limit: 1 }),
-      getTeachingSchedules(session.schoolId),
-      getActiveAcademicYear(session.schoolId),
-    ]);
+  // Fetch quick metrics and daily completeness for admin overview
+  const [
+    studentsData,
+    teachersData,
+    classesData,
+    schedulesData,
+    activeAy,
+    dailyCompleteness,
+  ] = await Promise.all([
+    getStudents(session.schoolId, { limit: 1 }),
+    getTeachers(session.schoolId, { limit: 1 }),
+    getClasses(session.schoolId, { limit: 1 }),
+    getTeachingSchedules(session.schoolId),
+    getActiveAcademicYear(session.schoolId),
+    getDailyAttendanceCompleteness(session.schoolId),
+  ]);
 
   return (
     <div className="space-y-6">
@@ -146,8 +155,28 @@ export default async function AdminDashboardPage() {
         </Link>
       </div>
 
+      {/* Indikator Kelengkapan Presensi Harian Seluruh Kelas (DoD 2) */}
+      <DailyCompletionSection overview={dailyCompleteness} />
+
       {/* Feature Navigation Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <Link
+          href="/admin/reports"
+          className="p-5 rounded-2xl bg-neutral-900 border border-neutral-800 hover:border-emerald-500/40 transition-all flex items-start gap-4"
+        >
+          <div className="p-3 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">
+            <FileSpreadsheet className="w-6 h-6" />
+          </div>
+          <div>
+            <h3 className="text-sm font-semibold text-neutral-200">
+              Pelaporan & Ekspor (.xlsx / .pdf)
+            </h3>
+            <p className="text-xs text-neutral-400 mt-1 leading-relaxed">
+              Tabel rekapitulasi presensi multi-dimensi (tanggal, kelas, siswa, status) dan unduh dokumen formal Excel dan PDF siap cetak.
+            </p>
+          </div>
+        </Link>
+
         <Link
           href="/admin/students"
           className="p-5 rounded-2xl bg-neutral-900 border border-neutral-800 hover:border-neutral-700 transition-all flex items-start gap-4"
@@ -157,7 +186,7 @@ export default async function AdminDashboardPage() {
           </div>
           <div>
             <h3 className="text-sm font-semibold text-neutral-200">
-              Modul Siswa & Impor CSV/Excel
+              Modul Siswa & Impor Massal
             </h3>
             <p className="text-xs text-neutral-400 mt-1 leading-relaxed">
               Manajemen biodata siswa, NIS, NISN, kontak wali murid untuk WhatsApp, dan impor massal dari template Excel dengan proteksi duplikasi NIS.
