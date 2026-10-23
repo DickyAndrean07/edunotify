@@ -1,0 +1,263 @@
+{
+  "version": 1,
+  "historyId": "1e7aa742-09ed-4c7c-b686-9286711189e2",
+  "currentRevision": "703fc712-1a84-4236-89d9-cf50a5b2b613",
+  "pendingChanges": false,
+  "files": {
+    "AGENTS.md": {
+      "hash": "fd0ea55029dfc62c31614321d782f47476d3d5daaaa4116b56318ed501911f1b",
+      "content": "/home/ubuntu/.cache/hyperframes/history/1e7aa742-09ed-4c7c-b686-9286711189e2/blobs/fd/fd0ea55029dfc62c31614321d782f47476d3d5daaaa4116b56318ed501911f1b"
+    },
+    "CLAUDE.md": {
+      "hash": "fd0ea55029dfc62c31614321d782f47476d3d5daaaa4116b56318ed501911f1b",
+      "content": "/home/ubuntu/.cache/hyperframes/history/1e7aa742-09ed-4c7c-b686-9286711189e2/blobs/fd/fd0ea55029dfc62c31614321d782f47476d3d5daaaa4116b56318ed501911f1b"
+    },
+    "hyperframes.json": {
+      "hash": "53dbce1e19aa713cbb12ee0bc4d206143b45ab15e6ffbfcaa8f69572d4d24d50",
+      "content": "/home/ubuntu/.cache/hyperframes/history/1e7aa742-09ed-4c7c-b686-9286711189e2/blobs/53/53dbce1e19aa713cbb12ee0bc4d206143b45ab15e6ffbfcaa8f69572d4d24d50"
+    },
+    "index.html": {
+      "hash": "d4b3f1bf4682651ad410532a34994ab6450b80c50d8866fbf7ad728f9158bcf8",
+      "content": "/home/ubuntu/.cache/hyperframes/history/1e7aa742-09ed-4c7c-b686-9286711189e2/blobs/d4/d4b3f1bf4682651ad410532a34994ab6450b80c50d8866fbf7ad728f9158bcf8"
+    },
+    "meta.json": {
+      "hash": "de6c116d52aab735facc8c9037f3655f99865b62dca66486befc546f90ec691b",
+      "content": "/home/ubuntu/.cache/hyperframes/history/1e7aa742-09ed-4c7c-b686-9286711189e2/blobs/de/de6c116d52aab735facc8c9037f3655f99865b62dca66486befc546f90ec691b"
+    },
+    "package.json": {
+      "hash": "6304c8bd21d645580ceca7550ddb07f8995df7f129d5e4ff70664c2b8a08df3c",
+      "content": "/home/ubuntu/.cache/hyperframes/history/1e7aa742-09ed-4c7c-b686-9286711189e2/blobs/63/6304c8bd21d645580ceca7550ddb07f8995df7f129d5e4ff70664c2b8a08df3c"
+    },
+    "images/glass-card-floating.webp": {
+      "hash": "a070def852fb187453e88a416f898d55ffc66cb37fd21dc87bd7bd7e1f103654",
+      "content": "/home/ubuntu/.cache/hyperframes/history/1e7aa742-09ed-4c7c-b686-9286711189e2/blobs/a0/a070def852fb187453e88a416f898d55ffc66cb37fd21dc87bd7bd7e1f103654"
+    },
+    "images/hero-campus-sunrise.webp": {
+      "hash": "c40bcfc9f8bf326a9c5eb71142063eb70918563a6deaf5e53b5554be345986c8",
+      "content": "/home/ubuntu/.cache/hyperframes/history/1e7aa742-09ed-4c7c-b686-9286711189e2/blobs/c4/c40bcfc9f8bf326a9c5eb71142063eb70918563a6deaf5e53b5554be345986c8"
+    },
+    "images/step-1-attendance.webp": {
+      "hash": "1f5737930cb3a5cb460c136dc6453463338a465b24d862b1c288bdeaa07c6e07",
+      "content": "/home/ubuntu/.cache/hyperframes/history/1e7aa742-09ed-4c7c-b686-9286711189e2/blobs/1f/1f5737930cb3a5cb460c136dc6453463338a465b24d862b1c288bdeaa07c6e07"
+    },
+    "images/step-2-ai-heart.webp": {
+      "hash": "52b79a1f5305a6993bd8aa735efd0c83b9a3a2b8ef2fefff5db7a60afd12ae1b",
+      "content": "/home/ubuntu/.cache/hyperframes/history/1e7aa742-09ed-4c7c-b686-9286711189e2/blobs/52/52b79a1f5305a6993bd8aa735efd0c83b9a3a2b8ef2fefff5db7a60afd12ae1b"
+    },
+    "images/step-3-communication-bridge.webp": {
+      "hash": "9413fd7ef07c4bd4244e7962e665f315ef4ff5a8abd39c17f26f8d6b796ebc3d",
+      "content": "/home/ubuntu/.cache/hyperframes/history/1e7aa742-09ed-4c7c-b686-9286711189e2/blobs/94/9413fd7ef07c4bd4244e7962e665f315ef4ff5a8abd39c17f26f8d6b796ebc3d"
+    }
+  },
+  "revisions": {
+    "88b90cf9-4ec8-4ba5-b3b6-0cf89fce1d72": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1792729885064,
+      "endedAt": 1792729885081,
+      "files": {
+        "images/glass-card-floating.webp": {
+          "before": null,
+          "after": "/home/ubuntu/.cache/hyperframes/history/1e7aa742-09ed-4c7c-b686-9286711189e2/blobs/a0/a070def852fb187453e88a416f898d55ffc66cb37fd21dc87bd7bd7e1f103654"
+        },
+        "images/hero-campus-sunrise.webp": {
+          "before": null,
+          "after": "/home/ubuntu/.cache/hyperframes/history/1e7aa742-09ed-4c7c-b686-9286711189e2/blobs/c4/c40bcfc9f8bf326a9c5eb71142063eb70918563a6deaf5e53b5554be345986c8"
+        },
+        "images/step-1-attendance.webp": {
+          "before": null,
+          "after": "/home/ubuntu/.cache/hyperframes/history/1e7aa742-09ed-4c7c-b686-9286711189e2/blobs/1f/1f5737930cb3a5cb460c136dc6453463338a465b24d862b1c288bdeaa07c6e07"
+        },
+        "images/step-2-ai-heart.webp": {
+          "before": null,
+          "after": "/home/ubuntu/.cache/hyperframes/history/1e7aa742-09ed-4c7c-b686-9286711189e2/blobs/52/52b79a1f5305a6993bd8aa735efd0c83b9a3a2b8ef2fefff5db7a60afd12ae1b"
+        },
+        "images/step-3-communication-bridge.webp": {
+          "before": null,
+          "after": "/home/ubuntu/.cache/hyperframes/history/1e7aa742-09ed-4c7c-b686-9286711189e2/blobs/94/9413fd7ef07c4bd4244e7962e665f315ef4ff5a8abd39c17f26f8d6b796ebc3d"
+        },
+        "index.html": {
+          "before": "/home/ubuntu/.cache/hyperframes/history/1e7aa742-09ed-4c7c-b686-9286711189e2/blobs/f6/f647f277b2a0acb4998a7f79a757efbc20f620e4fc95407bd99ee36732764a62",
+          "after": "/home/ubuntu/.cache/hyperframes/history/1e7aa742-09ed-4c7c-b686-9286711189e2/blobs/f4/f4804057d960ae8d551f97c1d99c0646cb57652f15deddc8b07f443f73087683"
+        }
+      }
+    },
+    "0f50a00d-b108-4399-a7fb-475d5159f382": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1792729956018,
+      "endedAt": 1792729956019,
+      "files": {
+        "index.html": {
+          "before": "/home/ubuntu/.cache/hyperframes/history/1e7aa742-09ed-4c7c-b686-9286711189e2/blobs/f4/f4804057d960ae8d551f97c1d99c0646cb57652f15deddc8b07f443f73087683",
+          "after": "/home/ubuntu/.cache/hyperframes/history/1e7aa742-09ed-4c7c-b686-9286711189e2/blobs/1b/1b856635f0c507e7ac353d6c8788c68c4e602344101f245e1e59898a614cfb51"
+        }
+      }
+    },
+    "703fc712-1a84-4236-89d9-cf50a5b2b613": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1792730178638,
+      "endedAt": 1792730178639,
+      "files": {
+        "index.html": {
+          "before": "/home/ubuntu/.cache/hyperframes/history/1e7aa742-09ed-4c7c-b686-9286711189e2/blobs/1b/1b856635f0c507e7ac353d6c8788c68c4e602344101f245e1e59898a614cfb51",
+          "after": "/home/ubuntu/.cache/hyperframes/history/1e7aa742-09ed-4c7c-b686-9286711189e2/blobs/d4/d4b3f1bf4682651ad410532a34994ab6450b80c50d8866fbf7ad728f9158bcf8"
+        }
+      }
+    }
+  },
+  "checks": {
+    "latest": {
+      "revision": "703fc712-1a84-4236-89d9-cf50a5b2b613",
+      "id": "87429e2e-d9eb-40e9-9c14-ba1a459761f8"
+    },
+    "revisions": {
+      "88b90cf9-4ec8-4ba5-b3b6-0cf89fce1d72": [
+        {
+          "id": "e0949d9d-9ae7-4251-99e1-89338df68de5",
+          "scope": "project",
+          "metadata": {
+            "ok": true,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 3000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1792729897859,
+          "contentHash": "28f1c5a452b50a9d733640d89b0764f82bc4e6e8e58c6bd3b2025abf93f3c8f1",
+          "revision": "88b90cf9-4ec8-4ba5-b3b6-0cf89fce1d72",
+          "inputFingerprint": "1d139ed3fe1e96878832eec9cdc754d102321af9ca97acf536e24daac4aff431",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "7132a2f6-7b91-4cb7-b953-8a1386e61aa3"
+        }
+      ],
+      "0f50a00d-b108-4399-a7fb-475d5159f382": [
+        {
+          "id": "8dd570c1-6824-4e6b-9320-13d20993a58d",
+          "scope": "project",
+          "report": "/home/ubuntu/edunotify/video/.hyperframes/artifacts/checks/8dd570c1-6824-4e6b-9320-13d20993a58d.json",
+          "metadata": {
+            "ok": true,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 3000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1792729962801,
+          "contentHash": "fc61a81203a8ec923d1f462049ebf9b7020cdcf0629cd2116dba8c2141bf463d",
+          "revision": "0f50a00d-b108-4399-a7fb-475d5159f382",
+          "inputFingerprint": "2d3a641bc2b88de74cae404b29cad60c0948c882894b0c5df96af82c261b2d82",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ],
+      "703fc712-1a84-4236-89d9-cf50a5b2b613": [
+        {
+          "id": "87429e2e-d9eb-40e9-9c14-ba1a459761f8",
+          "scope": "project",
+          "report": "/home/ubuntu/edunotify/video/.hyperframes/artifacts/checks/87429e2e-d9eb-40e9-9c14-ba1a459761f8.json",
+          "metadata": {
+            "ok": true,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 3000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1792731357803,
+          "contentHash": "7e92818e0bc07fce9a9040ede0e24a72aec7a7a016b11a4802d329b873ebfe4f",
+          "revision": "703fc712-1a84-4236-89d9-cf50a5b2b613",
+          "inputFingerprint": "4809928006d9f661a73339a5a8a464be4ac220e380bd4e5f6cce47fb8a694930",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ]
+    },
+    "unversioned": [
+      {
+        "id": "56be4743-70b3-4de6-962f-a49038d1f0e5",
+        "scope": "project",
+        "report": "/home/ubuntu/edunotify/video/.hyperframes/artifacts/checks/56be4743-70b3-4de6-962f-a49038d1f0e5.json",
+        "metadata": {
+          "ok": true,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 3000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1792729676168,
+        "contentHash": "f68a7d18068f7055fc03b3578f1f23b566100173cc4ef2927ed6c67f2715d491",
+        "revision": null,
+        "inputFingerprint": "1722441d9c362e1328cea4393bef10172c9901a0e141347e1db2206202e5cde4",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      }
+    ]
+  },
+  "snapshots": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "renders": {
+    "latest": {
+      "id": "b1480f67-5c3b-4a23-8dbb-ad5556389e0f",
+      "completedAt": 1792730289856,
+      "output": "/home/ubuntu/edunotify/public/videos/edunotify-showcase.mp4",
+      "status": "completed",
+      "revision": "703fc712-1a84-4236-89d9-cf50a5b2b613"
+    },
+    "retainedRevisions": [
+      "703fc712-1a84-4236-89d9-cf50a5b2b613",
+      "0f50a00d-b108-4399-a7fb-475d5159f382"
+    ]
+  },
+  "pendingArtifactCleanup": []
+}

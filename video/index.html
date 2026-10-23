@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>EduNotify Video Showcase</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      :root {
+        --brand-primary: #1351C6;
+        --brand-cyan: #04B9E8;
+        --brand-dark: #071325;
+        --brand-light: #F3F7FE;
+        --brand-mint: #35E6BD;
+        --mint-dot: #58F0CE;
+        --text-dim: #C5D8F0;
+        --text-bright: #FFFFFF;
+        --glass-bg: rgba(13, 32, 55, 0.85);
+        --glass-border: rgba(4, 185, 232, 0.35);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: var(--brand-dark);
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        color: var(--text-bright);
+      }
+
+      #root {
+        width: 1920px;
+        height: 1080px;
+        position: relative;
+        overflow: hidden;
+        background: #071325;
+      }
+
+      .clip {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+      }
+
+      .scene-content {
+        width: 100%;
+        height: 100%;
+        padding: 80px 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        box-sizing: border-box;
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Glow spots */
+      .ambient-glow {
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        filter: blur(120px);
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0.35;
+      }
+      .glow-cyan {
+        background: radial-gradient(circle, #04B9E8 0%, transparent 70%);
+      }
+      .glow-blue {
+        background: radial-gradient(circle, #1351C6 0%, transparent 70%);
+      }
+      .glow-mint {
+        background: radial-gradient(circle, #35E6BD 0%, transparent 70%);
+      }
+
+      /* Glass Panels */
+      .glass-card {
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 28px;
+        backdrop-filter: blur(20px);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px rgba(4, 185, 232, 0.15);
+      }
+
+      /* Typography */
+      .badge-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 24px;
+        border-radius: 9999px;
+        background: rgba(4, 185, 232, 0.15);
+        border: 1px solid rgba(4, 185, 232, 0.45);
+        color: #04B9E8;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        width: fit-content;
+      }
+
+      .badge-mint {
+        background: rgba(53, 230, 189, 0.15);
+        border: 1px solid rgba(53, 230, 189, 0.45);
+        color: #35E6BD;
+      }
+
+      .headline-lg {
+        font-size: 72px;
+        font-weight: 900;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+        color: #FFFFFF;
+      }
+
+      .headline-md {
+        font-size: 56px;
+        font-weight: 800;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        color: #FFFFFF;
+      }
+
+      .cyan-italic {
+        font-style: italic;
+        color: #04B9E8;
+        font-family: serif;
+      }
+
+      .mint-italic {
+        font-style: italic;
+        color: #35E6BD;
+        font-family: serif;
+      }
+
+      .sub-text {
+        font-size: 28px;
+        line-height: 1.45;
+        color: var(--text-dim);
+        max-width: 740px;
+      }
+
+      .stat-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        padding: 14px 28px;
+        border-radius: 18px;
+        background: rgba(19, 81, 198, 0.35);
+        border: 1px solid rgba(4, 185, 232, 0.45);
+        color: #FFFFFF;
+        font-size: 24px;
+        font-weight: 700;
+        width: fit-content;
+      }
+
+      /* Split layout for steps */
+      .split-layout {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 60px;
+        width: 100%;
+        height: 100%;
+      }
+
+      .split-text {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 26px;
+        z-index: 3;
+      }
+
+      .split-visual {
+        flex: 1.1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 3;
+      }
+
+      .image-frame {
+        width: 100%;
+        max-width: 780px;
+        height: 520px;
+        border-radius: 24px;
+        overflow: hidden;
+        border: 1px solid rgba(4, 185, 232, 0.35);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(4, 185, 232, 0.2);
+        position: relative;
+      }
+
+      .image-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .progress-bar-container {
+        position: absolute;
+        bottom: 30px;
+        left: 100px;
+        right: 100px;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 3px;
+        z-index: 100;
+        overflow: hidden;
+      }
+
+      .progress-bar-fill {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #1351C6 0%, #04B9E8 50%, #35E6BD 100%);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="12"
+      data-width="1920"
+      data-height="1080"
+    >
+      <!-- Bottom Progress Bar -->
+      <div class="progress-bar-container">
+        <div id="progress-bar" class="progress-bar-fill"></div>
+      </div>
+
+      <!-- ==============================================
+           SCENE 1: HERO & PRODUCT INTRO (0s - 3.2s)
+           ============================================== -->
+      <div id="scene-1" class="clip" data-start="0" data-duration="3.2" data-track-index="0">
+        <!-- Background Hero Campus Sunrise -->
+        <div style="position: absolute; inset: 0; z-index: 0; overflow: hidden;">
+          <img
+            id="s1-bg-img"
+            src="images/hero-campus-sunrise.webp"
+            alt="Hero Background"
+            data-layout-allow-overflow
+            style="width: 100%; height: 100%; object-fit: cover; opacity: 0.45; filter: brightness(0.7) saturate(1.2);"
+          />
+          <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(7, 19, 37, 0.94) 0%, rgba(7, 19, 37, 0.78) 50%, rgba(7, 19, 37, 0.96) 100%);"></div>
+        </div>
+
+        <div class="ambient-glow glow-blue" data-layout-allow-overflow style="top: 0; left: 0;"></div>
+        <div class="ambient-glow glow-cyan" data-layout-allow-overflow style="bottom: 0; right: 0;"></div>
+
+        <div class="scene-content">
+          <div class="split-layout">
+            <div class="split-text">
+              <div id="s1-badge" class="badge-pill">
+                <span>✦</span> PLATFORM PRESENSI DIGITAL & AI
+              </div>
+
+              <div id="s1-logo-row" style="display: flex; align-items: center; gap: 20px;">
+                <svg width="68" height="68" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="s1-grad" x1="0" y1="1" x2="1" y2="0">
+                      <stop offset="0%" stop-color="#1351C6" />
+                      <stop offset="100%" stop-color="#04B9E8" />
+                    </linearGradient>
+                  </defs>
+                  <rect x="5" y="5" width="86" height="86" rx="25" fill="url(#s1-grad)" />
+                  <path d="M26 28v40M26 28h21M26 48h17M26 68h21" stroke="#D8F8FF" stroke-width="7.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M53 68V28l18 40V28" stroke="#FFFFFF" stroke-width="7.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="71" cy="27" r="9.5" fill="#58F0CE" stroke="#0F43A6" stroke-width="2"/>
+                </svg>
+                <div style="display: flex; flex-direction: column;">
+                  <div style="font-size: 44px; font-weight: 900; letter-spacing: -0.03em; line-height: 1;">
+                    <span style="color: #FFFFFF;">edu</span><span style="color: #04B9E8;">notify</span>
+                  </div>
+                  <div style="font-size: 16px; color: #C5D8F0; letter-spacing: 0.15em; text-transform: uppercase; margin-top: 4px;" data-layout-ignore>
+                    Presensi Siswa & EWS Multitenant
+                  </div>
+                </div>
+              </div>
+
+              <h1 id="s1-headline" class="headline-lg">
+                Presensi Estafet &<br />
+                <span class="cyan-italic">Deteksi Dini Siswa</span><br />
+                Berbasis AI Cerdas.
+              </h1>
+
+              <p id="s1-sub" class="sub-text">
+                Presensi terpadu guru mapel real-time dengan Early Warning System cerdas.
+              </p>
+
+              <div id="s1-pill" class="stat-pill">
+                <span style="color: #35E6BD;">✓</span> Teruji di Sekolah Modern
+              </div>
+            </div>
+
+            <div class="split-visual">
+              <div id="s1-glass-card" class="image-frame" style="max-width: 540px; height: 540px; border-radius: 28px; border-color: rgba(4, 185, 232, 0.45); box-shadow: 0 25px 60px rgba(0,0,0,0.6), 0 0 50px rgba(4, 185, 232, 0.25);">
+                <img
+                  src="images/glass-card-floating.webp"
+                  alt="Glass Card Floating"
+                  style="width: 100%; height: 100%; object-fit: cover;"
+                />
+                <div class="glass-card" style="position: absolute; bottom: 24px; left: 24px; right: 24px; padding: 18px 24px; display: flex; align-items: center; gap: 16px;">
+                  <div style="width: 16px; height: 16px; border-radius: 50%; background: #35E6BD; box-shadow: 0 0 12px #35E6BD;"></div>
+                  <div>
+                    <div style="font-size: 16px; color: #C5D8F0; font-weight: 600;" data-layout-ignore>Status Rekonsiliasi</div>
+                    <div style="font-size: 22px; color: #FFFFFF; font-weight: 800;">100% Jadwal Estafet Sinkron</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==============================================
+           SCENE 2: STEP 1 - PRESENSI ESTAFET (3s - 6.2s)
+           ============================================== -->
+      <div id="scene-2" class="clip" data-start="3.0" data-duration="3.2" data-track-index="1">
+        <div class="ambient-glow glow-blue" data-layout-allow-overflow style="top: 50px; right: 50px;"></div>
+        <div class="ambient-glow glow-cyan" data-layout-allow-overflow style="bottom: 50px; left: 50px;"></div>
+
+        <div class="scene-content">
+          <div class="split-layout">
+            <div class="split-text">
+              <div id="s2-badge" class="badge-pill">
+                <span>01</span> PRESENSI ESTAFET GURU MAPEL
+              </div>
+
+              <h2 id="s2-headline" class="headline-md">
+                Pencatatan Presensi Real-Time<br />
+                <span class="cyan-italic">Per Jam Pelajaran</span> Terjadwal.
+              </h2>
+
+              <p id="s2-sub" class="sub-text">
+                Presensi per jam pelajaran tanpa tumpang tindih dengan rekonsiliasi otomatis.
+              </p>
+
+              <div id="s2-stat" class="stat-pill">
+                <span style="color: #04B9E8;">⚡</span> 99.8% Presensi Terekonsiliasi Otomatis
+              </div>
+
+              <div id="s2-chips" style="display: flex; gap: 14px; margin-top: 10px;">
+                <div style="padding: 10px 20px; border-radius: 12px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); font-size: 18px; font-weight: 600; color: #FFFFFF;" data-layout-ignore>
+                  ✓ Anti Tumpang Tindih
+                </div>
+                <div style="padding: 10px 20px; border-radius: 12px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); font-size: 18px; font-weight: 600; color: #FFFFFF;" data-layout-ignore>
+                  ✓ Rekonsiliasi Instan
+                </div>
+              </div>
+            </div>
+
+            <div class="split-visual">
+              <div id="s2-image-wrap" class="image-frame">
+                <img
+                  src="images/step-1-attendance.webp"
+                  alt="Langkah 1 Presensi Estafet"
+                />
+                <div class="glass-card" style="position: absolute; top: 24px; right: 24px; padding: 14px 24px; display: flex; align-items: center; gap: 12px;">
+                  <span style="width: 12px; height: 12px; border-radius: 50%; background: #35E6BD;"></span>
+                  <span style="font-size: 18px; font-weight: 700; color: #FFFFFF;">Presensi Kelas X-A Aktif</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==============================================
+           SCENE 3: STEP 2 - AI EARLY WARNING (6s - 9.2s)
+           ============================================== -->
+      <div id="scene-3" class="clip" data-start="6.0" data-duration="3.2" data-track-index="0">
+        <div class="ambient-glow glow-mint" data-layout-allow-overflow style="top: 50px; left: 100px;"></div>
+        <div class="ambient-glow glow-blue" data-layout-allow-overflow style="bottom: 50px; right: 100px;"></div>
+
+        <div class="scene-content">
+          <div class="split-layout">
+            <div class="split-text">
+              <div id="s3-badge" class="badge-pill badge-mint">
+                <span>02</span> AI EARLY WARNING & CARE SYSTEM
+              </div>
+
+              <h2 id="s3-headline" class="headline-md">
+                Deteksi Dini Siswa Berisiko<br />
+                Dengan <span class="mint-italic">Analitik Empati Cerdas</span>.
+              </h2>
+
+              <p id="s3-sub" class="sub-text">
+                Deteksi pola alpa beruntun lebih awal dengan rekomendasi tindakan tepat sasaran.
+              </p>
+
+              <div id="s3-stat" class="stat-pill" style="border-color: rgba(53, 230, 189, 0.45); background: rgba(53, 230, 189, 0.2);">
+                <span style="color: #35E6BD;">♥</span> 0 Siswa Tertinggal Tanpa Pendampingan
+              </div>
+
+              <div id="s3-chips" style="display: flex; gap: 14px; margin-top: 10px;">
+                <div style="padding: 10px 20px; border-radius: 12px; background: rgba(255,255,255,0.08); border: 1px solid rgba(53,230,189,0.35); font-size: 18px; font-weight: 600; color: #FFFFFF;" data-layout-ignore>
+                  ✦ Skor Risiko Akurat
+                </div>
+                <div style="padding: 10px 20px; border-radius: 12px; background: rgba(255,255,255,0.08); border: 1px solid rgba(53,230,189,0.35); font-size: 18px; font-weight: 600; color: #FFFFFF;" data-layout-ignore>
+                  ✦ Narasi Empatik AI
+                </div>
+              </div>
+            </div>
+
+            <div class="split-visual">
+              <div id="s3-image-wrap" class="image-frame" style="border-color: rgba(53, 230, 189, 0.45); box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 50px rgba(53, 230, 189, 0.25);">
+                <img
+                  src="images/step-2-ai-heart.webp"
+                  alt="Langkah 2 AI Early Warning"
+                />
+                <div class="glass-card" style="position: absolute; bottom: 24px; left: 24px; padding: 16px 26px; display: flex; align-items: center; gap: 14px; border-color: rgba(53,230,189,0.45);">
+                  <div style="font-size: 24px;">🛡️</div>
+                  <div>
+                    <div style="font-size: 16px; color: #35E6BD; font-weight: 700; text-transform: uppercase;" data-layout-ignore>Early Warning Active</div>
+                    <div style="font-size: 20px; color: #FFFFFF; font-weight: 700;">Intervensi Preventif Cepat</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==============================================
+           SCENE 4: STEP 3 & OUTRO (9s - 12s)
+           ============================================== -->
+      <div id="scene-4" class="clip" data-start="9.0" data-duration="3.0" data-track-index="1">
+        <div class="ambient-glow glow-cyan" data-layout-allow-overflow style="top: 50px; right: 50px;"></div>
+        <div class="ambient-glow glow-blue" data-layout-allow-overflow style="bottom: 50px; left: 50px;"></div>
+
+        <div class="scene-content">
+          <div class="split-layout">
+            <div class="split-text">
+              <div id="s4-badge" class="badge-pill">
+                <span>03</span> JEMBATAN KOMUNIKASI WA ORANG TUA
+              </div>
+
+              <h2 id="s4-headline" class="headline-md">
+                Jembatan Komunikasi Langsung<br />
+                Ke <span class="cyan-italic">Genggaman Orang Tua</span>.
+              </h2>
+
+              <p id="s4-sub" class="sub-text">
+                Integrasi WhatsApp Click-to-Chat transparan dengan pesan santun dan etis.
+              </p>
+
+              <div id="s4-stat" class="stat-pill">
+                <span style="color: #04B9E8;">📱</span> Klik-ke-Chat Terbuka & Ramah Wali Murid
+              </div>
+
+              <div id="s4-cta" style="margin-top: 10px; display: flex; align-items: center; gap: 20px;">
+                <div style="padding: 16px 36px; border-radius: 16px; background: linear-gradient(135deg, #1351C6 0%, #04B9E8 100%); color: #FFFFFF; font-weight: 800; font-size: 20px; box-shadow: 0 10px 25px rgba(4,185,232,0.4);">
+                  Mulai Gunakan EduNotify →
+                </div>
+                <div style="font-size: 20px; color: #C5D8F0; font-weight: 600;">
+                  edunotify.sch.id
+                </div>
+              </div>
+            </div>
+
+            <div class="split-visual">
+              <div id="s4-image-wrap" class="image-frame">
+                <img
+                  src="images/step-3-communication-bridge.webp"
+                  alt="Langkah 3 Jembatan Komunikasi WA"
+                />
+                <div class="glass-card" style="position: absolute; top: 24px; left: 24px; padding: 14px 24px; display: flex; align-items: center; gap: 12px;">
+                  <span style="font-size: 20px;">💬</span>
+                  <span style="font-size: 18px; font-weight: 700; color: #FFFFFF;">Template WhatsApp Otomatis</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Outro Overlay Brand Mark (Fades in at end) -->
+        <div id="s4-outro-overlay" data-layout-allow-occlusion style="position: absolute; inset: 0; background: radial-gradient(circle at center, rgba(7,19,37,0.96) 0%, rgba(7,19,37,0.98) 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 50; opacity: 0; pointer-events: none;">
+          <div id="s4-outro-logo" style="display: flex; flex-direction: column; align-items: center; gap: 24px;">
+            <svg width="108" height="108" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="outro-grad" x1="0" y1="1" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#1351C6" />
+                  <stop offset="100%" stop-color="#04B9E8" />
+                </linearGradient>
+              </defs>
+              <rect x="5" y="5" width="86" height="86" rx="25" fill="url(#outro-grad)" />
+              <path d="M26 28v40M26 28h21M26 48h17M26 68h21" stroke="#D8F8FF" stroke-width="7.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M53 68V28l18 40V28" stroke="#FFFFFF" stroke-width="7.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="71" cy="27" r="9.5" fill="#58F0CE" stroke="#0F43A6" stroke-width="2"/>
+            </svg>
+            <div style="font-size: 64px; font-weight: 900; letter-spacing: -0.03em;">
+              <span style="color: #FFFFFF;">edu</span><span style="color: #04B9E8;">notify</span>
+            </div>
+            <p style="font-size: 28px; color: #C5D8F0; max-width: 700px; text-align: center; line-height: 1.4;">
+              Presensi Berkeadilan, Generasi Terjaga.<br />
+              <span style="color: #35E6BD; font-weight: 700;">Transformasi Digital Sekolah Dimulai Hari Ini.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==============================================
+         GSAP ANIMATION SCRIPT
+         ============================================== -->
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // Progress bar over 12s
+      tl.to("#progress-bar", { width: "100%", duration: 12, ease: "none" }, 0);
+
+      // --- SCENE 1 (0.0s - 3.2s) ---
+      tl.from("#s1-bg-img", { scale: 1.15, duration: 3.2, ease: "power1.out" }, 0.1);
+      tl.from("#s1-badge", { opacity: 0, y: -30, duration: 0.6, ease: "back.out(1.7)" }, 0.2);
+      tl.from("#s1-logo-row", { opacity: 0, x: -40, duration: 0.7, ease: "power3.out" }, 0.35);
+      tl.from("#s1-headline", { opacity: 0, y: 35, duration: 0.8, ease: "power3.out" }, 0.5);
+      tl.from("#s1-sub", { opacity: 0, y: 25, duration: 0.7, ease: "power2.out" }, 0.7);
+      tl.from("#s1-pill", { opacity: 0, scale: 0.9, duration: 0.6, ease: "back.out(1.5)" }, 0.9);
+      tl.from("#s1-glass-card", { opacity: 0, scale: 0.85, x: 60, rotation: 3, duration: 1.0, ease: "power3.out" }, 0.4);
+
+      // --- SCENE 2 (3.0s - 6.2s) ---
+      tl.from("#s2-badge", { opacity: 0, y: -25, duration: 0.6, ease: "back.out(1.7)" }, 3.1);
+      tl.from("#s2-headline", { opacity: 0, y: 35, duration: 0.7, ease: "power3.out" }, 3.25);
+      tl.from("#s2-sub", { opacity: 0, y: 25, duration: 0.7, ease: "power2.out" }, 3.45);
+      tl.from("#s2-stat", { opacity: 0, x: -30, duration: 0.6, ease: "power2.out" }, 3.65);
+      tl.from("#s2-chips", { opacity: 0, y: 20, duration: 0.6, ease: "power3.out" }, 3.8);
+      tl.from("#s2-image-wrap", { opacity: 0, scale: 0.92, x: 50, duration: 0.9, ease: "power3.out" }, 3.2);
+
+      // --- SCENE 3 (6.0s - 9.2s) ---
+      tl.from("#s3-badge", { opacity: 0, y: -25, duration: 0.6, ease: "back.out(1.7)" }, 6.1);
+      tl.from("#s3-headline", { opacity: 0, y: 35, duration: 0.7, ease: "power3.out" }, 6.25);
+      tl.from("#s3-sub", { opacity: 0, y: 25, duration: 0.7, ease: "power2.out" }, 6.45);
+      tl.from("#s3-stat", { opacity: 0, x: -30, duration: 0.6, ease: "power2.out" }, 6.65);
+      tl.from("#s3-chips", { opacity: 0, y: 20, duration: 0.6, ease: "power3.out" }, 6.8);
+      tl.from("#s3-image-wrap", { opacity: 0, scale: 0.92, x: 50, duration: 0.9, ease: "power3.out" }, 6.2);
+
+      // --- SCENE 4 (9.0s - 12.0s) ---
+      tl.from("#s4-badge", { opacity: 0, y: -25, duration: 0.6, ease: "back.out(1.7)" }, 9.1);
+      tl.from("#s4-headline", { opacity: 0, y: 35, duration: 0.7, ease: "power3.out" }, 9.25);
+      tl.from("#s4-sub", { opacity: 0, y: 25, duration: 0.7, ease: "power2.out" }, 9.45);
+      tl.from("#s4-stat", { opacity: 0, x: -30, duration: 0.6, ease: "power2.out" }, 9.65);
+      tl.from("#s4-cta", { opacity: 0, y: 20, duration: 0.6, ease: "power3.out" }, 9.8);
+      tl.from("#s4-image-wrap", { opacity: 0, scale: 0.92, x: 50, duration: 0.9, ease: "power3.out" }, 9.2);
+
+      // Final Scene Outro Brand Overlay (10.6s - 12.0s)
+      tl.to("#s4-outro-overlay", { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 10.6);
+      tl.from("#s4-outro-logo", { scale: 0.85, y: 30, duration: 0.7, ease: "back.out(1.5)" }, 10.8);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

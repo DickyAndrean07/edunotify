@@ -23,14 +23,9 @@ export async function middleware(request: NextRequest) {
   const token = request.cookies.get(SESSION_COOKIE_NAME)?.value;
   const user = token ? await verifyToken(token) : null;
 
-  // Root path routing
+  // Root path routing - Landing Page EduNotify (Public)
   if (pathname === '/') {
-    if (user) {
-      const redirectUrl = new URL(getRedirectPathForRole(user.role), request.url);
-      return NextResponse.redirect(redirectUrl);
-    }
-    const loginUrl = new URL('/login', request.url);
-    return NextResponse.redirect(loginUrl);
+    return NextResponse.next();
   }
 
   // Login page access
