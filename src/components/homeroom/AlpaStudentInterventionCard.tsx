@@ -8,7 +8,6 @@ import {
   Users,
   FileEdit,
   Phone,
-  AlertCircle,
   Loader2,
   Check,
 } from 'lucide-react';
@@ -37,35 +36,42 @@ export function AlpaStudentInterventionCard({
     switch (status) {
       case 'WHATSAPP_OPENED':
         return (
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-sky-950/80 text-sky-400 border border-sky-800">
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-50 dark:bg-[#372B20] text-amber-700 dark:text-[#FFC15B] border border-amber-200 dark:border-transparent">
             <ExternalLink className="w-3 h-3" />
-            WhatsApp Dibuka
+            WA Dibuka
           </span>
         );
       case 'MARKED_CONTACTED':
         return (
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-950/80 text-emerald-400 border border-emerald-800">
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-[#123D3D] text-emerald-700 dark:text-[#45D9A7] border border-emerald-200 dark:border-transparent">
             <CheckCircle2 className="w-3 h-3" />
-            Ditandai Sudah Dihubungi
+            Sudah Dihubungi
           </span>
         );
       case 'NOT_OPENED':
       default:
         return (
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-neutral-800 text-neutral-400 border border-neutral-700">
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-rose-50 dark:bg-[#3A2035] text-rose-700 dark:text-[#FF7087] border border-rose-200 dark:border-transparent">
             Belum Dibuka
           </span>
         );
     }
   };
 
+  const initials = student.name
+    ? student.name
+        .split(' ')
+        .map((p) => p[0])
+        .join('')
+        .slice(0, 2)
+        .toUpperCase()
+    : 'AP';
+
   const handleSendWhatsApp = async () => {
     if (!student.whatsAppUrl) return;
     setIsOpeningWA(true);
     try {
-      // 1. Open WA link in new tab
       window.open(student.whatsAppUrl, '_blank', 'noopener,noreferrer');
-      // 2. Trigger server tracking
       await onWhatsAppClick(student.attendanceRecordId, student.whatsAppUrl);
     } finally {
       setIsOpeningWA(false);
@@ -82,41 +88,46 @@ export function AlpaStudentInterventionCard({
   };
 
   return (
-    <div className="p-4 rounded-xl bg-neutral-900/90 border border-neutral-800 hover:border-neutral-700 transition flex flex-col justify-between space-y-4">
+    <div className="p-5 rounded-2xl bg-white dark:bg-[#0D2037] border border-[#E4EBF6] dark:border-[#1D3756] hover:border-[#CBD8EA] dark:hover:border-[#2D4E75] transition-all flex flex-col justify-between space-y-4 shadow-sm">
       {/* Top Header & Status */}
       <div>
-        <div className="flex items-start justify-between gap-2">
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs px-2 py-0.5 rounded bg-neutral-800 text-neutral-400 font-mono">
-                {student.nis}
-              </span>
-              <span className="text-xs text-neutral-400 font-medium">
-                {student.gender === 'L' ? 'Laki-laki' : 'Perempuan'}
-              </span>
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex items-start gap-3">
+            <div className="w-10 h-10 rounded-xl bg-[#1351C6]/10 dark:bg-[#112E58] text-[#1351C6] dark:text-[#04B9E8] font-extrabold text-xs flex items-center justify-center shrink-0 border border-[#1351C6]/20 dark:border-[#1684FF]/30">
+              {initials}
             </div>
-            <h3 className="text-base font-bold text-neutral-100 mt-1">
-              {student.name}
-            </h3>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-[11px] px-2 py-0.5 rounded-md bg-slate-100 dark:bg-[#071325] text-slate-600 dark:text-[#91A9C6] font-mono border border-slate-200 dark:border-[#1D3756]">
+                  {student.nis}
+                </span>
+                <span className="text-[11px] text-[#72849D] dark:text-[#91A9C6] font-medium">
+                  {student.gender === 'L' ? 'Laki-laki' : 'Perempuan'}
+                </span>
+              </div>
+              <h3 className="text-base font-bold text-[#172944] dark:text-[#EAF5FF] mt-1 leading-snug">
+                {student.name}
+              </h3>
+            </div>
           </div>
-          <div className="flex-shrink-0">
+          <div className="shrink-0">
             {getStatusBadge(student.interventionStatus)}
           </div>
         </div>
 
         {/* Guardian Info */}
-        <div className="mt-3 pt-3 border-t border-neutral-800/80 space-y-1.5 text-xs text-neutral-300">
+        <div className="mt-3.5 pt-3 border-t border-[#E4EBF6] dark:border-[#1D3756] space-y-1.5 text-xs">
           <div className="flex items-center justify-between">
-            <span className="text-neutral-500">Orang Tua/Wali:</span>
-            <span className="font-medium text-neutral-200">
+            <span className="text-[#72849D] dark:text-[#91A9C6]">Orang Tua / Wali:</span>
+            <span className="font-semibold text-[#172944] dark:text-[#EAF5FF]">
               {student.guardianName || 'Belum terdata'}
             </span>
           </div>
 
           <div className="flex items-center justify-between">
-            <span className="text-neutral-500">Nomor WhatsApp:</span>
-            <span className="font-mono text-neutral-200 flex items-center gap-1">
-              <Phone className="w-3 h-3 text-emerald-400" />
+            <span className="text-[#72849D] dark:text-[#91A9C6]">WhatsApp:</span>
+            <span className="font-mono text-[#172944] dark:text-[#EAF5FF] flex items-center gap-1.5">
+              <Phone className="w-3 h-3 text-[#25D366]" />
               {student.guardianPhone || 'Tidak ada nomor'}
             </span>
           </div>
@@ -124,32 +135,28 @@ export function AlpaStudentInterventionCard({
 
         {/* Sibling / Multi-student single contact notice */}
         {student.isMultiStudentContact && (
-          <div className="mt-3 p-2.5 rounded-lg bg-sky-950/40 border border-sky-800/60 text-[11px] text-sky-300 flex items-start gap-2">
-            <Users className="w-3.5 h-3.5 text-sky-400 flex-shrink-0 mt-0.5" />
+          <div className="mt-3 p-2.5 rounded-xl bg-blue-50 dark:bg-[#112E58]/40 border border-blue-200 dark:border-blue-900/40 text-[11px] text-blue-800 dark:text-blue-300 flex items-start gap-2">
+            <Users className="w-3.5 h-3.5 text-blue-600 dark:text-[#04B9E8] shrink-0 mt-0.5" />
             <div>
-              <span className="font-semibold text-sky-200">Kontak Bersama:</span>{' '}
-              Nomor ini juga terdaftar untuk{' '}
-              <span className="font-semibold text-sky-200">
-                {student.sharedWithStudents.join(', ')}
-              </span>
-              . Tautan WhatsApp ini secara spesifik hanya memuat template untuk ananda{' '}
-              <span className="font-semibold underline">{student.name}</span>.
+              <span className="font-bold">Kontak Bersama:</span> Nomor ini juga terdaftar untuk{' '}
+              <span className="font-bold">{student.sharedWithStudents.join(', ')}</span>.
             </div>
           </div>
         )}
       </div>
 
       {/* Action Buttons */}
-      <div className="space-y-2 pt-2 border-t border-neutral-800/80">
+      <div className="space-y-2 pt-3 border-t border-[#E4EBF6] dark:border-[#1D3756]">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           {/* Kirim WhatsApp button */}
           <button
+            type="button"
             onClick={handleSendWhatsApp}
             disabled={!student.whatsAppUrl || isOpeningWA}
-            className={`w-full inline-flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-xs font-semibold transition ${
+            className={`w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl text-xs font-bold transition shadow-sm ${
               student.whatsAppUrl
-                ? 'bg-emerald-600 hover:bg-emerald-500 text-white shadow-sm shadow-emerald-900/30'
-                : 'bg-neutral-800 text-neutral-500 cursor-not-allowed'
+                ? 'bg-[#25D366] hover:bg-[#20ba5a] text-white'
+                : 'bg-slate-100 dark:bg-[#11233B] text-slate-400 dark:text-[#91A9C6] cursor-not-allowed border border-slate-200 dark:border-[#1D3756]'
             }`}
             title={
               student.whatsAppUrl
@@ -162,26 +169,25 @@ export function AlpaStudentInterventionCard({
             ) : (
               <MessageSquare className="w-3.5 h-3.5" />
             )}
-            <span>Kirim WhatsApp</span>
+            <span>Buka WhatsApp</span>
           </button>
 
           {/* Tandai Sudah Dihubungi button */}
           <button
+            type="button"
             onClick={handleMarkContacted}
-            disabled={
-              isMarking || student.interventionStatus === 'MARKED_CONTACTED'
-            }
-            className={`w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold border transition ${
+            disabled={isMarking || student.interventionStatus === 'MARKED_CONTACTED'}
+            className={`w-full inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl text-xs font-bold border transition ${
               student.interventionStatus === 'MARKED_CONTACTED'
-                ? 'bg-neutral-900 text-emerald-400 border-emerald-900/60 cursor-default'
-                : 'bg-neutral-800 hover:bg-neutral-700 text-neutral-200 border-neutral-700'
+                ? 'bg-emerald-50 dark:bg-[#123D3D] text-emerald-700 dark:text-[#45D9A7] border-emerald-200 dark:border-emerald-800 cursor-default'
+                : 'bg-white dark:bg-[#071325] hover:bg-slate-50 dark:hover:bg-[#11233B] text-[#172944] dark:text-[#EAF5FF] border-[#E4EBF6] dark:border-[#1D3756]'
             }`}
           >
             {isMarking ? (
               <Loader2 className="w-3.5 h-3.5 animate-spin" />
             ) : student.interventionStatus === 'MARKED_CONTACTED' ? (
               <>
-                <Check className="w-3.5 h-3.5 text-emerald-400" />
+                <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-[#45D9A7]" />
                 <span>Sudah Dihubungi</span>
               </>
             ) : (
@@ -195,10 +201,11 @@ export function AlpaStudentInterventionCard({
 
         {/* Koreksi status quick button */}
         <button
+          type="button"
           onClick={() => onOpenCorrectionModal(student)}
-          className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-neutral-300 hover:text-neutral-100 hover:bg-neutral-800/80 transition border border-transparent hover:border-neutral-700"
+          className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium text-[#72849D] dark:text-[#91A9C6] hover:text-[#172944] dark:hover:text-[#EAF5FF] hover:bg-slate-100 dark:hover:bg-[#11233B] transition border border-transparent hover:border-[#E4EBF6] dark:hover:border-[#1D3756]"
         >
-          <FileEdit className="w-3.5 h-3.5 text-neutral-400" />
+          <FileEdit className="w-3.5 h-3.5" />
           <span>Koreksi Presensi (Alasan Wajib)</span>
         </button>
       </div>

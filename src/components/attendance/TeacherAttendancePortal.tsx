@@ -4,12 +4,10 @@ import React, { useState, useEffect, useCallback } from 'react';
 import {
   Clock,
   CheckCircle2,
-  AlertTriangle,
   BookOpen,
   Calendar,
   Lock,
   Loader2,
-  CalendarX,
   RefreshCw,
   Users,
 } from 'lucide-react';
@@ -158,34 +156,34 @@ export function TeacherAttendancePortal({ initialDate, user }: Props) {
     }
   };
 
-  // Check if any schedule has active 12pm or uncompleted warnings
   const any12pmWarning = schedules.find((s) => s.overview?.isWarning12pm);
   const anyUncompleted = schedules.find((s) => s.overview?.isUncompletedAlert);
 
   return (
     <div className="space-y-6">
       {/* Top Filter & Refresh bar */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 rounded-2xl bg-neutral-900 border border-neutral-800">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 rounded-2xl bg-white dark:bg-[#0D2037] border border-[#E4EBF6] dark:border-[#1D3756] shadow-sm transition-colors">
         <div className="flex items-center gap-3">
-          <Calendar className="w-5 h-5 text-emerald-400" />
+          <Calendar className="w-5 h-5 text-[#1351C6] dark:text-[#04B9E8]" />
           <div>
-            <div className="text-xs text-neutral-400">Tanggal KBM:</div>
+            <div className="text-xs font-semibold text-[#72849D] dark:text-[#91A9C6]">Tanggal KBM:</div>
             <input
               type="date"
               value={selectedDate}
               onChange={(e) => setSelectedDate(e.target.value)}
-              className="bg-neutral-800 border border-neutral-700 text-neutral-100 text-sm font-semibold rounded-lg px-2.5 py-1 focus:outline-none focus:border-emerald-500"
+              className="bg-slate-50 dark:bg-[#071325] border border-[#E4EBF6] dark:border-[#1D3756] text-[#172944] dark:text-[#EAF5FF] text-xs font-bold font-mono rounded-xl px-3 py-1.5 focus:outline-none focus:border-[#1351C6]"
             />
           </div>
         </div>
 
         <button
+          type="button"
           onClick={fetchSchedules}
           disabled={isLoading}
-          className="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-neutral-300 transition-colors"
+          className="inline-flex items-center gap-2 text-xs font-bold px-4 py-2 rounded-xl bg-slate-50 dark:bg-[#071325] hover:bg-slate-100 dark:hover:bg-[#11233B] text-[#172944] dark:text-[#EAF5FF] border border-[#E4EBF6] dark:border-[#1D3756] transition-all shadow-sm"
         >
           <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? 'animate-spin' : ''}`} />
-          Segarkan Data
+          <span>Segarkan Data</span>
         </button>
       </div>
 
@@ -209,24 +207,24 @@ export function TeacherAttendancePortal({ initialDate, user }: Props) {
       )}
 
       {error && (
-        <div className="p-4 rounded-xl bg-rose-950/40 border border-rose-800/60 text-rose-300 text-sm">
+        <div className="p-4 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800/60 text-rose-700 dark:text-rose-300 text-xs font-semibold">
           {error}
         </div>
       )}
 
       {/* Schedules Grid */}
       {isLoading ? (
-        <div className="flex flex-col items-center justify-center py-20 text-neutral-400 gap-3">
-          <Loader2 className="w-8 h-8 animate-spin text-emerald-400" />
-          <p className="text-sm">Memuat jadwal mengajar hari ini...</p>
+        <div className="flex flex-col items-center justify-center py-20 text-[#72849D] dark:text-[#91A9C6] gap-3">
+          <Loader2 className="w-8 h-8 animate-spin text-[#1351C6] dark:text-[#04B9E8]" />
+          <p className="text-xs font-medium">Memuat jadwal mengajar hari ini...</p>
         </div>
       ) : schedules.length === 0 ? (
-        <div className="p-12 text-center rounded-2xl bg-neutral-900 border border-neutral-800">
-          <BookOpen className="w-10 h-10 text-neutral-600 mx-auto mb-3" />
-          <h3 className="text-base font-semibold text-neutral-300">
+        <div className="p-12 text-center rounded-2xl bg-white dark:bg-[#0D2037] border border-[#E4EBF6] dark:border-[#1D3756] shadow-sm">
+          <BookOpen className="w-10 h-10 text-[#72849D] dark:text-[#91A9C6] mx-auto mb-3" />
+          <h3 className="text-base font-bold text-[#172944] dark:text-[#EAF5FF]">
             Tidak Ada Jadwal Mengajar
           </h3>
-          <p className="text-sm text-neutral-500 mt-1 max-w-md mx-auto">
+          <p className="text-xs text-[#72849D] dark:text-[#91A9C6] mt-1 max-w-md mx-auto">
             Anda tidak memiliki jadwal mengajar terdaftar pada tanggal yang dipilih ({selectedDate}).
           </p>
         </div>
@@ -240,15 +238,15 @@ export function TeacherAttendancePortal({ initialDate, user }: Props) {
             return (
               <div
                 key={schedule.id}
-                className="p-5 rounded-2xl bg-neutral-900 border border-neutral-800 hover:border-neutral-700 transition-all flex flex-col justify-between"
+                className="p-5 rounded-2xl bg-white dark:bg-[#0D2037] border border-[#E4EBF6] dark:border-[#1D3756] hover:border-[#CBD8EA] dark:hover:border-[#2D4E75] transition-all flex flex-col justify-between shadow-sm"
               >
                 <div>
                   <div className="flex items-start justify-between gap-3 mb-3">
                     <div>
-                      <span className="text-xs font-mono font-semibold text-emerald-400 uppercase tracking-wider">
+                      <span className="text-xs font-mono font-bold text-[#1351C6] dark:text-[#04B9E8] uppercase tracking-wider">
                         Jam ke-{schedule.periodOrder}
                       </span>
-                      <h3 className="text-xl font-bold text-neutral-100 mt-0.5">
+                      <h3 className="text-xl font-extrabold text-[#172944] dark:text-[#EAF5FF] mt-0.5">
                         {schedule.className}
                       </h3>
                     </div>
@@ -262,72 +260,72 @@ export function TeacherAttendancePortal({ initialDate, user }: Props) {
                     />
                   </div>
 
-                  <div className="text-sm font-semibold text-neutral-200">
+                  <div className="text-sm font-bold text-[#172944] dark:text-[#EAF5FF]">
                     {schedule.subjectName}
                   </div>
 
-                  <div className="text-xs text-neutral-400 mt-1 flex items-center gap-1.5">
-                    <Clock className="w-3.5 h-3.5 text-neutral-500" />
-                    {schedule.startTime} – {schedule.endTime} WIB
+                  <div className="text-xs text-[#72849D] dark:text-[#91A9C6] mt-1 flex items-center gap-1.5 font-medium">
+                    <Clock className="w-3.5 h-3.5" />
+                    <span>{schedule.startTime} – {schedule.endTime} WIB</span>
                   </div>
 
                   {/* Overview Stats pill if submitted */}
                   {isDone ? (
-                    <div className="mt-4 p-3 rounded-xl bg-neutral-950/60 border border-neutral-800 text-xs">
-                      <div className="text-neutral-400 mb-1.5 flex items-center justify-between">
+                    <div className="mt-4 p-3 rounded-xl bg-slate-50 dark:bg-[#071325] border border-[#E4EBF6] dark:border-[#1D3756] text-xs">
+                      <div className="text-[#72849D] dark:text-[#91A9C6] mb-1.5 flex items-center justify-between font-semibold">
                         <span>Status Rekap:</span>
-                        <span className="text-emerald-400 font-semibold">Tersimpan</span>
+                        <span className="text-emerald-600 dark:text-[#35E6BD]">Tersimpan</span>
                       </div>
-                      <div className="flex items-center gap-2 text-neutral-300 font-medium">
-                        <span className="text-emerald-400">H: {overview.presentCount}</span>
-                        <span>•</span>
-                        <span className="text-sky-400">S: {overview.sickCount}</span>
-                        <span>•</span>
-                        <span className="text-amber-400">I: {overview.permitCount}</span>
-                        <span>•</span>
-                        <span className="text-rose-400">A: {overview.alpaCount}</span>
+                      <div className="flex items-center gap-2 font-bold font-mono">
+                        <span className="text-emerald-600 dark:text-[#35E6BD]">H: {overview.presentCount}</span>
+                        <span className="text-[#94A3B8]">•</span>
+                        <span className="text-blue-600 dark:text-[#04B9E8]">S: {overview.sickCount}</span>
+                        <span className="text-[#94A3B8]">•</span>
+                        <span className="text-amber-600 dark:text-[#FFAA00]">I: {overview.permitCount}</span>
+                        <span className="text-[#94A3B8]">•</span>
+                        <span className="text-rose-600 dark:text-[#FF7087]">A: {overview.alpaCount}</span>
                       </div>
                     </div>
                   ) : (
-                    <div className="mt-4 p-3 rounded-xl bg-neutral-950/40 border border-neutral-800 text-xs text-neutral-400">
+                    <div className="mt-4 p-3 rounded-xl bg-slate-50 dark:bg-[#071325] border border-[#E4EBF6] dark:border-[#1D3756] text-xs text-[#72849D] dark:text-[#91A9C6]">
                       <div className="flex items-center gap-1.5">
-                        <Users className="w-3.5 h-3.5 text-neutral-500" />
-                        <span>Total Siswa: <strong className="text-neutral-200">{overview.totalStudents}</strong></span>
+                        <Users className="w-3.5 h-3.5 text-[#72849D]" />
+                        <span>Total Siswa: <strong className="text-[#172944] dark:text-[#EAF5FF]">{overview.totalStudents}</strong></span>
                       </div>
-                      <div className="text-[11px] text-neutral-500 mt-1">
+                      <div className="text-[11px] text-[#94A3B8] mt-1">
                         {access.message || 'Presensi kelas belum disubmit.'}
                       </div>
                     </div>
                   )}
                 </div>
 
-                <div className="mt-5 pt-4 border-t border-neutral-800/80">
+                <div className="mt-5 pt-4 border-t border-[#E4EBF6] dark:border-[#1D3756]">
                   <button
                     type="button"
                     disabled={isSheetLoading || isHoliday}
                     onClick={() => handleOpenAttendance(item)}
-                    className={`w-full py-2.5 px-4 rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 ${
+                    className={`w-full py-2.5 px-4 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 ${
                       isDone
-                        ? 'bg-neutral-800 hover:bg-neutral-700 text-neutral-200'
+                        ? 'bg-slate-100 dark:bg-[#11233B] hover:bg-slate-200 dark:hover:bg-[#142C49] text-[#172944] dark:text-[#EAF5FF] border border-[#E4EBF6] dark:border-[#1D3756]'
                         : canFill
-                        ? 'bg-emerald-500 hover:bg-emerald-400 text-neutral-950 shadow-lg shadow-emerald-500/20'
-                        : 'bg-neutral-800/80 text-neutral-400 hover:bg-neutral-800 hover:text-neutral-300'
+                        ? 'bg-gradient-to-r from-[#1351C6] to-[#04B9E8] hover:opacity-95 text-white shadow-md'
+                        : 'bg-slate-100 dark:bg-[#071325] text-slate-400 dark:text-[#91A9C6]'
                     }`}
                   >
                     {isDone ? (
                       <>
                         <Lock className="w-4 h-4" />
-                        Lihat Presensi (Read-Only)
+                        <span>Lihat Presensi (Read-Only)</span>
                       </>
                     ) : canFill ? (
                       <>
                         <CheckCircle2 className="w-4 h-4" />
-                        Isi Presensi Estafet
+                        <span>Isi Presensi Estafet</span>
                       </>
                     ) : (
                       <>
                         <Clock className="w-4 h-4" />
-                        Buka Detail Jadwal
+                        <span>Buka Detail Jadwal</span>
                       </>
                     )}
                   </button>

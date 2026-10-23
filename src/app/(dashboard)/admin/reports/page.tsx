@@ -87,17 +87,17 @@ export default async function AdminReportsPage({
   return (
     <div className="space-y-6">
       {/* Top Header & Export Action */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-neutral-800">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-[#E4EBF6] dark:border-[#1D3756]">
         <div>
           <div className="flex items-center gap-2.5">
-            <span className="p-2 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+            <span className="p-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-[#35E6BD] border border-emerald-200 dark:border-emerald-800">
               <FileSpreadsheet className="w-5 h-5" />
             </span>
             <div>
-              <h1 className="text-xl font-bold text-neutral-100">
+              <h1 className="text-xl font-extrabold text-[#172944] dark:text-[#EAF5FF] tracking-tight">
                 Pelaporan Agregat Presensi & Ekspor Dokumen
               </h1>
-              <p className="text-xs text-neutral-400 mt-0.5">
+              <p className="text-xs text-[#72849D] dark:text-[#91A9C6] mt-0.5">
                 Filter multi-dimensi presensi siswa dan generator berkas formal Excel (.xlsx) dan PDF siap cetak
               </p>
             </div>
@@ -127,7 +127,7 @@ export default async function AdminReportsPage({
 
       {/* Validation Error Banner */}
       {validationError && (
-        <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs">
+        <div className="p-4 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800/80 text-rose-700 dark:text-rose-300 text-xs font-semibold">
           <strong>Perhatian:</strong> {validationError}
         </div>
       )}

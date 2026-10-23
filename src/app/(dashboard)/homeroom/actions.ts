@@ -32,6 +32,7 @@ import {
   verifyCorrectionAccess,
   CorrectionEligibilityResult,
 } from '@/services/correctionService';
+import { evaluateClassEWS } from '@/services/earlyWarningService';
 import { revalidatePath } from 'next/cache';
 
 export interface AlpaStudentItem {
@@ -482,3 +483,13 @@ export async function getCorrectionHistoryAction(attendanceRecordId: string) {
   const session = await requireHomeroomOrAdminSession();
   return await getCorrectionHistory(session.schoolId, attendanceRecordId);
 }
+
+/**
+ * Server Action: Fetch Class Early Warning System data
+ */
+export async function getHomeroomEWSAction(classId: string, asOfDate?: string) {
+  const session = await requireHomeroomOrAdminSession();
+  await verifyClassHomeroomAccess(session.schoolId, classId, session);
+  return await evaluateClassEWS(session.schoolId, classId, asOfDate);
+}
+

@@ -185,13 +185,13 @@ export function AttendanceSheet({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-sm overflow-y-auto">
-      <div className="w-full max-w-4xl bg-neutral-900 border border-neutral-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col my-auto max-h-[92vh]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/60 dark:bg-black/80 backdrop-blur-sm overflow-y-auto">
+      <div className="w-full max-w-4xl bg-white dark:bg-[#0D2037] border border-[#E4EBF6] dark:border-[#1D3756] rounded-2xl shadow-2xl overflow-hidden flex flex-col my-auto max-h-[92vh] transition-colors">
         {/* Header */}
-        <div className="p-5 border-b border-neutral-800 flex items-center justify-between bg-neutral-900/90">
+        <div className="p-5 border-b border-[#E4EBF6] dark:border-[#1D3756] flex items-center justify-between bg-slate-50/80 dark:bg-[#071325]/80">
           <div>
             <div className="flex items-center gap-3">
-              <h2 className="text-xl font-bold text-neutral-100">{className}</h2>
+              <h2 className="text-xl font-extrabold text-[#172944] dark:text-[#EAF5FF]">{className}</h2>
               <RelayBadge
                 sessionStatus={isLockedLocal ? 'SUBMITTED' : sessionStatus}
                 isReadOnly={isLockedLocal}
@@ -200,14 +200,15 @@ export function AttendanceSheet({
                 isLateSubmission={isLateSubmission}
               />
             </div>
-            <p className="text-xs text-neutral-400 mt-1">
-              Mata Pelajaran: <span className="text-neutral-200 font-medium">{subjectName}</span> • Tanggal: <span className="text-neutral-200 font-medium">{date}</span>
+            <p className="text-xs text-[#72849D] dark:text-[#91A9C6] mt-1 font-medium">
+              Mata Pelajaran: <span className="text-[#172944] dark:text-[#EAF5FF] font-bold">{subjectName}</span> &bull; Tanggal: <span className="text-[#172944] dark:text-[#EAF5FF] font-bold">{date}</span>
             </p>
           </div>
 
           <button
+            type="button"
             onClick={onClose}
-            className="p-2 rounded-xl text-neutral-400 hover:text-neutral-200 hover:bg-neutral-800 transition-colors"
+            className="p-2 rounded-xl text-[#72849D] dark:text-[#91A9C6] hover:text-[#172944] dark:hover:text-[#EAF5FF] hover:bg-slate-100 dark:hover:bg-[#11233B] transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -262,23 +263,23 @@ export function AttendanceSheet({
         </div>
 
         {/* Summary Stats & Quick Actions */}
-        <div className="p-5 border-b border-neutral-800/80 flex flex-wrap items-center justify-between gap-4">
+        <div className="p-5 border-b border-[#E4EBF6] dark:border-[#1D3756] flex flex-wrap items-center justify-between gap-4 bg-slate-50/50 dark:bg-[#071325]/40">
           <div className="flex flex-wrap items-center gap-2 text-xs">
-            <span className="px-3 py-1.5 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-medium">
-              Hadir: <span className="font-bold">{presentCount}</span>
+            <span className="px-3 py-1.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-[#35E6BD] border border-emerald-200 dark:border-emerald-800 font-bold">
+              Hadir: <span>{presentCount}</span>
             </span>
-            <span className="px-3 py-1.5 rounded-lg bg-sky-500/10 text-sky-400 border border-sky-500/20 font-medium">
-              Sakit: <span className="font-bold">{sickCount}</span>
+            <span className="px-3 py-1.5 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-[#04B9E8] border border-blue-200 dark:border-blue-800 font-bold">
+              Sakit: <span>{sickCount}</span>
             </span>
-            <span className="px-3 py-1.5 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20 font-medium">
-              Izin: <span className="font-bold">{permitCount}</span>
+            <span className="px-3 py-1.5 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-[#FFAA00] border border-amber-200 dark:border-amber-800 font-bold">
+              Izin: <span>{permitCount}</span>
             </span>
-            <span className="px-3 py-1.5 rounded-lg bg-rose-500/10 text-rose-400 border border-rose-500/20 font-medium">
-              Alpa: <span className="font-bold">{alpaCount}</span>
+            <span className="px-3 py-1.5 rounded-xl bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-[#FF7087] border border-rose-200 dark:border-rose-800 font-bold">
+              Alpa: <span>{alpaCount}</span>
             </span>
             {unrecordedCount > 0 && (
-              <span className="px-3 py-1.5 rounded-lg bg-neutral-800 text-neutral-400 border border-neutral-700 font-medium">
-                Belum Diabsen: <span className="font-bold">{unrecordedCount}</span>
+              <span className="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-[#071325] text-slate-600 dark:text-[#91A9C6] border border-slate-200 dark:border-[#1D3756] font-semibold">
+                Belum Diabsen: <span>{unrecordedCount}</span>
               </span>
             )}
           </div>
@@ -287,7 +288,7 @@ export function AttendanceSheet({
             <button
               type="button"
               onClick={handleMarkAllPresent}
-              className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg bg-emerald-600/20 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-600/30 transition-colors"
+              className="inline-flex items-center gap-1.5 text-xs font-bold px-3.5 py-1.5 rounded-xl bg-[#1351C6]/10 text-[#1351C6] dark:text-[#04B9E8] border border-[#1351C6]/30 dark:border-[#1684FF]/40 hover:bg-[#1351C6]/20 transition-all shadow-sm"
             >
               <UserCheck className="w-3.5 h-3.5" />
               Tandai Semua Hadir
@@ -296,7 +297,7 @@ export function AttendanceSheet({
         </div>
 
         {/* Student List Form */}
-        <div className="flex-1 overflow-y-auto p-5 divide-y divide-neutral-800/60">
+        <div className="flex-1 overflow-y-auto p-5 divide-y divide-[#E4EBF6] dark:divide-[#1D3756]/60">
           {records.length === 0 ? (
             <div className="text-center py-12 text-sm text-neutral-500">
               Tidak ada siswa yang terdaftar di kelas ini.
@@ -309,25 +310,25 @@ export function AttendanceSheet({
                   className="py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3 first:pt-0 last:pb-0"
                 >
                   <div className="flex items-center gap-3 min-w-[200px]">
-                    <span className="text-xs font-mono text-neutral-500 w-6">
+                    <span className="text-xs font-mono text-[#72849D] dark:text-[#91A9C6] w-6">
                       {idx + 1}.
                     </span>
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="text-sm font-semibold text-neutral-200">
+                        <span className="text-sm font-bold text-[#172944] dark:text-[#EAF5FF]">
                           {student.name}
                         </span>
                         <span
                           className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${
                             student.gender === 'L'
-                              ? 'bg-blue-500/20 text-blue-400'
-                              : 'bg-pink-500/20 text-pink-400'
+                              ? 'bg-blue-500/20 text-blue-600 dark:text-blue-400'
+                              : 'bg-pink-500/20 text-pink-600 dark:text-pink-400'
                           }`}
                         >
                           {student.gender}
                         </span>
                       </div>
-                      <span className="text-xs text-neutral-400 font-mono">
+                      <span className="text-xs text-[#72849D] dark:text-[#91A9C6] font-mono">
                         NIS: {student.nis}
                       </span>
                     </div>
@@ -339,10 +340,10 @@ export function AttendanceSheet({
                       type="button"
                       disabled={isLockedLocal}
                       onClick={() => handleStatusChange(student.studentId, 'PRESENT')}
-                      className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                      className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
                         student.status === 'PRESENT'
-                          ? 'bg-emerald-500 text-neutral-950 shadow-md shadow-emerald-500/20'
-                          : 'bg-neutral-800/80 text-neutral-400 hover:bg-neutral-800 hover:text-neutral-200'
+                          ? 'bg-emerald-500 text-white shadow-md shadow-emerald-500/20'
+                          : 'bg-slate-100 dark:bg-[#11233B] text-slate-600 dark:text-[#91A9C6] hover:bg-slate-200 dark:hover:bg-[#142C49]'
                       } ${isLockedLocal ? 'opacity-80 cursor-not-allowed' : ''}`}
                     >
                       Hadir (H)
@@ -352,10 +353,10 @@ export function AttendanceSheet({
                       type="button"
                       disabled={isLockedLocal}
                       onClick={() => handleStatusChange(student.studentId, 'SICK')}
-                      className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                      className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
                         student.status === 'SICK'
-                          ? 'bg-sky-500 text-neutral-950 shadow-md shadow-sky-500/20'
-                          : 'bg-neutral-800/80 text-neutral-400 hover:bg-neutral-800 hover:text-neutral-200'
+                          ? 'bg-sky-500 text-white shadow-md shadow-sky-500/20'
+                          : 'bg-slate-100 dark:bg-[#11233B] text-slate-600 dark:text-[#91A9C6] hover:bg-slate-200 dark:hover:bg-[#142C49]'
                       } ${isLockedLocal ? 'opacity-80 cursor-not-allowed' : ''}`}
                     >
                       Sakit (S)
@@ -365,10 +366,10 @@ export function AttendanceSheet({
                       type="button"
                       disabled={isLockedLocal}
                       onClick={() => handleStatusChange(student.studentId, 'PERMIT')}
-                      className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                      className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
                         student.status === 'PERMIT'
-                          ? 'bg-amber-500 text-neutral-950 shadow-md shadow-amber-500/20'
-                          : 'bg-neutral-800/80 text-neutral-400 hover:bg-neutral-800 hover:text-neutral-200'
+                          ? 'bg-amber-500 text-white shadow-md shadow-amber-500/20'
+                          : 'bg-slate-100 dark:bg-[#11233B] text-slate-600 dark:text-[#91A9C6] hover:bg-slate-200 dark:hover:bg-[#142C49]'
                       } ${isLockedLocal ? 'opacity-80 cursor-not-allowed' : ''}`}
                     >
                       Izin (I)
@@ -378,17 +379,17 @@ export function AttendanceSheet({
                       type="button"
                       disabled={isLockedLocal}
                       onClick={() => handleStatusChange(student.studentId, 'ABSENT_ALPA')}
-                      className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                      className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
                         student.status === 'ABSENT_ALPA'
-                          ? 'bg-rose-500 text-neutral-950 shadow-md shadow-rose-500/20'
-                          : 'bg-neutral-800/80 text-neutral-400 hover:bg-neutral-800 hover:text-neutral-200'
+                          ? 'bg-rose-500 text-white shadow-md shadow-rose-500/20'
+                          : 'bg-slate-100 dark:bg-[#11233B] text-slate-600 dark:text-[#91A9C6] hover:bg-slate-200 dark:hover:bg-[#142C49]'
                       } ${isLockedLocal ? 'opacity-80 cursor-not-allowed' : ''}`}
                     >
                       Alpa (A)
                     </button>
 
                     {student.status === 'UNRECORDED' && (
-                      <span className="text-[11px] text-neutral-500 px-2 italic">
+                      <span className="text-[11px] text-[#94A3B8] px-2 italic font-medium">
                         Belum Diabsen
                       </span>
                     )}
@@ -400,18 +401,18 @@ export function AttendanceSheet({
         </div>
 
         {/* Footer */}
-        <div className="p-5 border-t border-neutral-800 bg-neutral-900/90 flex items-center justify-between gap-4">
-          <div className="text-xs text-neutral-500">
+        <div className="p-5 border-t border-[#E4EBF6] dark:border-[#1D3756] bg-slate-50 dark:bg-[#071325]/80 flex items-center justify-between gap-4">
+          <div className="text-xs text-[#72849D] dark:text-[#91A9C6] font-medium">
             {isLockedLocal ? (
-              <span className="text-neutral-400">
+              <span>
                 Data presensi terkunci setelah submit resmi.
               </span>
             ) : unrecordedCount > 0 ? (
-              <span className="text-amber-400/90">
+              <span className="text-amber-600 dark:text-amber-400 font-bold">
                 Perhatian: Masih ada {unrecordedCount} siswa berstatus &quot;Belum Diabsen&quot;.
               </span>
             ) : (
-              <span className="text-emerald-400">
+              <span className="text-emerald-600 dark:text-[#35E6BD] font-bold">
                 Semua siswa ({records.length}) telah terdata.
               </span>
             )}
@@ -421,7 +422,7 @@ export function AttendanceSheet({
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-xl text-sm font-medium bg-neutral-800 text-neutral-300 hover:bg-neutral-700 transition-colors"
+              className="px-4 py-2 rounded-xl text-xs font-bold bg-white dark:bg-[#11233B] text-[#172944] dark:text-[#EAF5FF] hover:bg-slate-100 dark:hover:bg-[#142C49] border border-[#E4EBF6] dark:border-[#1D3756] transition-all shadow-sm"
             >
               {isLockedLocal ? 'Tutup' : 'Batal'}
             </button>
@@ -431,17 +432,17 @@ export function AttendanceSheet({
                 type="button"
                 onClick={handleSubmit}
                 disabled={isSubmitting || records.length === 0}
-                className="px-5 py-2 rounded-xl text-sm font-semibold bg-emerald-500 text-neutral-950 hover:bg-emerald-400 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center gap-2 shadow-lg shadow-emerald-500/20"
+                className="px-5 py-2.5 rounded-xl text-xs font-bold bg-gradient-to-r from-[#1351C6] to-[#04B9E8] text-white hover:opacity-95 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center gap-2 shadow-md"
               >
                 {isSubmitting ? (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin" />
-                    Menyimpan...
+                    <span>Menyimpan...</span>
                   </>
                 ) : (
                   <>
                     <Check className="w-4 h-4" />
-                    Simpan Presensi Resmi
+                    <span>Simpan Presensi Resmi</span>
                   </>
                 )}
               </button>

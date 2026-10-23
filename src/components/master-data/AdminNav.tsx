@@ -26,7 +26,7 @@ export function AdminNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="flex items-center gap-1.5 overflow-x-auto pb-3 mb-6 border-b border-neutral-800 scrollbar-none">
+    <nav className="flex items-center gap-1.5 overflow-x-auto pb-3 mb-6 border-b border-[#E4EBF6] dark:border-[#1D3756] scrollbar-none transition-colors">
       {NAV_ITEMS.map((item) => {
         const Icon = item.icon;
         const isActive = item.exact
@@ -37,10 +37,10 @@ export function AdminNav() {
           <Link
             key={item.href}
             href={item.href}
-            className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-medium whitespace-nowrap transition-colors ${
+            className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
               isActive
-                ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30'
-                : 'text-neutral-400 hover:text-neutral-200 hover:bg-neutral-900 border border-transparent'
+                ? 'bg-[#1351C6]/10 text-[#1351C6] dark:text-[#04B9E8] border border-[#1351C6]/30 dark:border-[#1684FF]/40 shadow-sm'
+                : 'text-[#72849D] dark:text-[#91A9C6] hover:text-[#172944] dark:hover:text-[#EAF5FF] hover:bg-white dark:hover:bg-[#0D2037] border border-transparent'
             }`}
           >
             <Icon className="w-4 h-4" />
