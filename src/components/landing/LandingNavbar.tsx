@@ -78,7 +78,11 @@ export function LandingNavbar() {
               {link.label}
             </a>
           ))}
-          <div className="pt-2 border-t border-[#E4EBF6] dark:border-[#1D3756]">
+          <div className="pt-2 border-t border-[#E4EBF6] dark:border-[#1D3756] flex items-center justify-between px-2 py-1">
+            <span className="text-xs font-medium text-[#72849D] dark:text-[#91A9C6]">Mode Tampilan</span>
+            <ThemeToggle />
+          </div>
+          <div className="pt-2">
             <Link
               href="/login"
               onClick={() => setMobileMenuOpen(false)}

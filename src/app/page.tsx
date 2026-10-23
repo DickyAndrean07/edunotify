@@ -9,7 +9,7 @@ import { LandingCTA } from '@/components/landing/LandingCTA';
 import { LandingFooter } from '@/components/landing/LandingFooter';
 
 export const metadata: Metadata = {
-  title: 'EduNotify — Presensi Siswa Estafet & Early Warning System AI',
+  title: 'EduNotify: Presensi Siswa Estafet & Early Warning System AI',
   description:
     'Platform presensi sekolah modern berbasis jadwal estafet guru mapel, deteksi dini siswa berisiko AI, dan komunikasi kepedulian wali murid.',
 };
